@@ -10,7 +10,13 @@ class DefaultContainerApp : ContainerApp {
         FirebaseRepositorySiswa()
     }
 }
-
+class AplikasiDatasSiswa : Application() {
+    lateinit var container: ContainerApp
+    override fun onCreate() {
+        super.onCreate()
+        this.container = DefaultContainerApp()
+    }
+}
 
 
 
