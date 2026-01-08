@@ -11,6 +11,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -61,7 +63,7 @@ fun DetailSiswaScreen(
             FloatingActionButton(
                 onClick = {
                     when(uiState){ is StatusUIDetail.Success->
-                    navigateToEditItem(uiState.satuSiswa!!.id.toInt()) else{}}
+                    navigateToEditItem(uiState.satuSiswa!!.id.toInt()) else->{}}
                 },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
@@ -112,7 +114,7 @@ private fun BodyDetailSiswa(
         }
         if (deleteConfirmationRequired) {
             DeleteConfirmationDialog(
-                onDeleteConfirmation = {
+                onDeleteConfirm = {
                     deleteConfirmationRequired = false
                     onDelete()
                 },
