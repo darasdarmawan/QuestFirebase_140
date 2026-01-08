@@ -1,9 +1,12 @@
 package com.example.firebase.view
 
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.firebase.view.route.DestinasiDetail
 import com.example.firebase.viewmodel.DetailViewModel
 import com.example.firebase.viewmodel.PenyediaViewModel
 
@@ -15,5 +18,14 @@ fun DetailSiswaScreen(
     modifier: Modifier = Modifier,
     viewModel: DetailViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
+    Scaffold (
+        topBar = {
+            SiswaTopAppBar(
+                title = stringResource(DestinasiDetail.titleRes),
+                canNavigateBack = true,
+                navigateUp = navigateBack
+            )
+        },
 
+    )
 }
