@@ -54,5 +54,17 @@ fun DetailSiswaScreen(
                 )
             }
         }, modifier = modifier
-    )
+    ) { innerPadding ->
+        val coroutineScope = rememberCoroutineScope()
+        BodyDetailSiswa(
+            statusUIDetail = viewModel.statusUIDetail,
+            onDelete = { coroutineScope.launch {
+                viewModel.hapusSatuSiswa()
+                navigateBack()
+            }},
+            modifier = Modifier
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+        )
+    }
 }
