@@ -3,9 +3,12 @@ package com.example.firebase.viewmodel
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.firebase.modeldata.Siswa
 import com.example.firebase.repositori.RepositorySiswa
 import com.example.firebase.view.route.DestinasiDetail
+import kotlinx.coroutines.launch
+import java.io.IOException
 
 sealed interface StatusUIDetail {
     data class Success(val satuSiswa: Siswa?) : StatusUIDetail
@@ -22,4 +25,19 @@ class DetailViewModel(savedStateHandle: SavedStateHandle,private val  repository
     init {
         getSatuSiswa()
     }
+    fun getSatuSiswa(){
+        viewModelScope.launch {
+            statusUIDetail = StatusUIDetail.Loading
+            statusUIDetail = try {
+                StatusUIDetail.Success(satuSiswa = repositorySiswa.getSatuSiswa(idSiswa))
+            }
+            catch (e: IOException){
+                StatusUIDetail.Error
+            }
+            catch (e: Exception){
+                StatusUIDetail.Error
+            }
+        }
+    }
+
     }
