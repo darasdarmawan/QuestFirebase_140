@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.firebase.modeldata.DetailSiswa
 import com.example.firebase.modeldata.UIStateSiswa
+import com.example.firebase.modeldata.toDataSiswa
 import com.example.firebase.repositori.RepositorySiswa
 import com.example.firebase.view.route.DestinasiDetail
 import kotlinx.coroutines.launch
@@ -35,6 +36,16 @@ RepositorySiswa) : ViewModel() {
     private fun validasiInput(uiStateSiswa: DetailSiswa = uiStateSiswa.detailSiswa): Boolean{
         return with(uiState){
             nama.isNotBlank() && alamat.isNotBlank() && telpon.isNotBlank()
+        }
+    }
+    suspend fun editSatuSiswa(){
+        if (validasiInput(uiStateSiswa.detailSiswa)){
+            try {
+                repositorySiswa.editSatuSiswa(idSiswa,uiStateSiswa.detailSiswa.toDataSiswa())
+                println("Update Sukses: $idSiswa")
+            } catch (e: Exception){
+                println("Update Error: ${e.message}")
+            }
         }
     }
 }
