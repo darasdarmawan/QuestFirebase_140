@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.firebase.modeldata.DetailSiswa
 import com.example.firebase.modeldata.UIStateSiswa
 import com.example.firebase.modeldata.toDataSiswa
+import com.example.firebase.modeldata.toUiStateSiswa
 import com.example.firebase.repositori.RepositorySiswa
 import com.example.firebase.view.route.DestinasiDetail
 import kotlinx.coroutines.launch
@@ -33,7 +34,7 @@ RepositorySiswa) : ViewModel() {
             UIStateSiswa(detailSiswa, isEntryValid = validasiInput(detailSiswa))
     }
 
-    private fun validasiInput(uiStateSiswa: DetailSiswa = uiStateSiswa.detailSiswa): Boolean{
+    private fun validasiInput(uiState: DetailSiswa = uiStateSiswa.detailSiswa): Boolean{
         return with(uiState){
             nama.isNotBlank() && alamat.isNotBlank() && telpon.isNotBlank()
         }
