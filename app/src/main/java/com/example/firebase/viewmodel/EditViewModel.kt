@@ -30,6 +30,11 @@ RepositorySiswa) : ViewModel() {
     fun updateUiState(detailSiswa: DetailSiswa) {
         uiStateSiswa =
             UIStateSiswa(detailSiswa, isEntryValid = validasiInput(detailSiswa))
+    }
 
+    private fun validasiInput(uiStateSiswa: DetailSiswa = uiStateSiswa.detailSiswa): Boolean{
+        return with(uiState){
+            nama.isNotBlank() && alamat.isNotBlank() && telpon.isNotBlank()
+        }
     }
 }
